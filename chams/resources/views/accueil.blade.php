@@ -17,9 +17,12 @@
          </div>
       </div>
     </div>
-    <a class="btn btn-secondary" href="{{ route('edit.text',['id'=> $posts->id ]) }}">modifier</a>
+    <a class="btn btn-secondary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{$posts->id}}">modifier</a>
+    @include('modal.nouveau')
     @endforeach
 
   </div>
 </main>
+
+
 @endsection

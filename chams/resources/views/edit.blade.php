@@ -4,7 +4,7 @@
 @section('content')
 @foreach($post->comments as $comment)
 <hr>
-<div>{{ $comment->indice }}</div>
+
 
 @endforeach
 <form action="{{ route('edit.verif') }}" method="POST">
