@@ -82,7 +82,7 @@
 
                     <th>nom prof</th>
                     <th>abonnement</th>
-                    <th>durée</th>
+                    <th>date</th>
                     <th>état payement</th>
                     <th>
                         action
@@ -99,16 +99,18 @@
                        <form action="{{ route('validation.setting')}}" method="POST">
                         @csrf
                         <input type="hidden" value="{{ $prof->prix }}00" name="prix">
-                       <td><input class="form-control" type="number" min='1' max='12' style="width: 100px;" name="total" required></td>
+                       <td>{{$prof->created_at}}</td>
                        <td> 
                         @if($prof->pivot->payement == false) 
                           <p class="text-danger">non payé</p>
+                          <td><button class="btn btn-success d-flex"><i class="material-icons mt-1">attach_money</i>payer</button></td>
                         @else
                         <p class="text-success">payé</p>
+                        <td><button class="btn btn-primary d-flex"><i class="material-icons mt-1">list</i>facture</button></td>
                         @endif
                         </td>
                        
-                       <td><button class="btn btn-success">payer</button></td>
+                       
                        </form>
                        </tr>
 

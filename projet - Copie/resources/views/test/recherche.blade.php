@@ -7,7 +7,7 @@
        <p>{{ $prof->nom }}</p> 
        
   @empty
-       <p>pas encore de prof reservé</p>     
+       <p class="text-warning">pas encore de prof reservé</p>     
   @endforelse
 </h3>
       @if(Session::get('success'))

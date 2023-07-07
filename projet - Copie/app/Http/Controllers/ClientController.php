@@ -22,9 +22,8 @@ class ClientController extends Controller
     public function create(){
 
         $post = Client::take(4)->get();
-        
         return view('test.index',[
-            'post'=> $post
+            'post'=> $post,
         ]);
 
     }
@@ -39,27 +38,7 @@ class ClientController extends Controller
     }
 
 
-    public function recherche(int $id){
-
-       $test = Prof::findOrFail($id);
-       $idy = $id;
-       $client = Client::findOrFail($id);
-       if(isset($_GET['requette'])){
-          $resultat = $_GET['requette'];
-          $coach = Prof::where('nom','LIKE','%'.$resultat.'%')->orWhere('numero','LIKE','%'.$resultat.'%')->paginate(2);
-          return view('test.recherche',[
-            'coach' => $coach,
-            'id' => $idy,
-            'client' => $client
-          ]);
-        }else{
-
-            return view('test.recherche',[
-                'id' => $idy,
-                'client'=> $client
-            ]);
-        }   
-    }
+    
 
 
     public function image(){
@@ -235,4 +214,25 @@ class ClientController extends Controller
 
         ]);
     }
+
+
+    public function recherche(int $id){
+
+        $client = Client::findOrFail($id);
+        if(isset($_GET['requette'])){
+           $resultat = $_GET['requette'];
+           $coach = Prof::where('nom','LIKE','%'.$resultat.'%')->orWhere('numero','LIKE','%'.$resultat.'%')->paginate(2);
+           return view('test.recherche',[
+             'coach' => $coach,
+             'id' => $id,
+             'client' => $client
+           ]);
+         }else{
+ 
+             return view('test.recherche',[
+                 'id' => $id,
+                 'client'=> $client
+             ]);
+         }   
+     }
 }
